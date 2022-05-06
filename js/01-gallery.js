@@ -29,7 +29,31 @@ function onClick(event) {
     }
 
     const largeImgLink = event.target.dataset.source;
-    // console.log(largeImgLink);
+    console.log(largeImgLink);
+
+    	basicLightbox.create(`
+		<img width="1400" height="900" src="${largeImgLink}">
+	`).show()
 }
 
+// document.querySelector('button.image').onclick = () => {
+
+// 	basicLightbox.create(`
+// 		<img width="1400" height="900" src="https://placehold.it/1400x900">
+// 	`).show()
+
+// }
+
+// import * as basicLightbox from 'basiclightbox'
+
+// const instance = basicLightbox.create(`
+//     <div class="modal">
+//         <p>
+//             Your first lightbox with just a few lines of code.
+//             Yes, it's really that simple.
+//         </p>
+//     </div>
+// `)
+
+// instance.show()
 // console.log(galleryMarkup);
