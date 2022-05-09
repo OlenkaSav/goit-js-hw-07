@@ -24,36 +24,28 @@ galleryContainer.addEventListener('click', onClick);
 
 function onClick(event) {
     event.preventDefault();
-    if (event.target.nodeName !== "IMG") {
+        if (event.target.nodeName !== "IMG") {
         return
     }
 
     const largeImgLink = event.target.dataset.source;
-    console.log(largeImgLink);
+    // console.log(largeImgLink);
 
-    	basicLightbox.create(`
+    const image = basicLightbox.create(`
 		<img width="1400" height="900" src="${largeImgLink}">
-	`).show()
+	`);
+    image.show();
+
+    window.addEventListener('keydown', onEscDown, { once: true });
+
+    function onEscDown(event) {
+    if (event.code === 'Escape') {
+        console.log(event);
+        image.close()
+    } 
+}
 }
 
-// document.querySelector('button.image').onclick = () => {
 
-// 	basicLightbox.create(`
-// 		<img width="1400" height="900" src="https://placehold.it/1400x900">
-// 	`).show()
 
-// }
 
-// import * as basicLightbox from 'basiclightbox'
-
-// const instance = basicLightbox.create(`
-//     <div class="modal">
-//         <p>
-//             Your first lightbox with just a few lines of code.
-//             Yes, it's really that simple.
-//         </p>
-//     </div>
-// `)
-
-// instance.show()
-// console.log(galleryMarkup);
