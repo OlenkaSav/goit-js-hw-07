@@ -24,19 +24,31 @@ galleryContainer.addEventListener('click', onClick);
 
 function onClick(event) {
     event.preventDefault();
-        if (event.target.nodeName !== "IMG") {
+    if (event.target.nodeName !== "IMG") {
         return
     }
 
     const largeImgLink = event.target.dataset.source;
-    // console.log(largeImgLink);
+    // console.log(event.target.nodeName);
 
     const image = basicLightbox.create(`
 		<img width="1400" height="900" src="${largeImgLink}">
-	`);
+	`, {
+        onShow: (image) => { window.addEventListener('keydown', onEscDown, { once: true }); },
+
+        onClose: (image) => { window.removeEventListener('keydown', onEscDown); }
+    }
+    );
+
     image.show();
 
-    window.addEventListener('keydown', onEscDown, { once: true });
+    
+ 	//  * Function that gets executed before the lightbox will be shown.
+	//  * Returning false will prevent the lightbox from showing.
+	//  */
+   
+
+   
 
     function onEscDown(event) {
     if (event.code === 'Escape') {
